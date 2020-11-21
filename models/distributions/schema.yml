@@ -1,0 +1,59 @@
+
+version: 2
+
+sources:
+  - name: tsm
+    schema: public
+    tables:
+      - name: lpd_cap_gain_dt_long_term_cap_gain
+        tests:
+          - datapoints_not_unique
+      - name: lpd_cap_gain_dt_qualified_short_term_cap_gain
+      - name: lpd_cap_gain_dt_non_qual_short_term_cap_gain
+      - name: lpd_cap_gain_dt_short_term_cap_gain
+      - name: lpd_cap_gain_dt_medium_term_cap_gain
+      - name: lpd_cap_gain_dt_capital_gain
+      - name: lpd_cap_gain_dt_reit_section_1250
+      - name: lpd_cap_gain_dt_return_of_capital
+
+models:
+    - name: mf_cap_gain
+      description: "Distributions [Cap Gain]"
+      tests:
+        - datapoints_not_unique
+      columns:
+          - name: id
+            description: "assetId"
+            tests:
+              - not_null
+          - name: date
+            tests:
+              - not_null
+          - name: value
+            tests:
+              - not_null
+          - name: type
+            tests:
+              - not_null
+          - name: detail
+            tests:
+              - not_null
+    
+    - name: mf_cap_gain_summary
+      description: "Distributions [Cap Gain] Summary"
+      tests:
+        - datapoints_not_unique
+      column:
+          - name: id
+            description: "assetId"
+            tests:
+              - not_null
+          - name: date
+            tests:
+              - not_null
+          - name: value
+            tests:
+              - not_nul
+          - name: metadata
+        
+
